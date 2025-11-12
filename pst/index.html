@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Process Simulation</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Process State Simulation</h1>
+<h2>Ready Queue</h2>
+<div id="readyQueue" class="queue"></div>
+
+<h2>Running Process</h2>
+<div id="runningProcess" class="running"></div>
+
+<h2>Completed Processes</h2>
+<div id="completedQueue" class="queue"></div>
+<form id="processForm">
+    <input type="text" id="pid" placeholder="Process ID" required>
+    <input type="number" id="arrival" placeholder="Arrival Time" required>
+    <input type="number" id="burst" placeholder="Burst Time" required>
+    <button type="submit">Add Process</button>
+</form>
+
+<button id="runSim">Run Simulation</button>
+
+<h2>Gantt Chart</h2>
+<div id="gantt"></div>
+
+<h2>Process States</h2>
+<pre id="states"></pre>
+
+<script src="/script.js"></script>
+</body>
+</html>
