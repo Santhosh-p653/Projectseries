@@ -17,3 +17,7 @@ Install dependencies using:
 ```bash
 pip install -r requirements.txt
 ```
+# Access url
+```
+http://santhosh11042007.pythonanywhere.com/
+```
