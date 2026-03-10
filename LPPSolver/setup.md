@@ -9,8 +9,8 @@ It supports **multiple variables and multiple constraints** and prints the optim
 ## 1. Clone the Repository
 
 ```bash
-git clone <http://github.com/Santhosh-p653/projectSeries/LPPSolvery>
-cd ProjectSeries/linear_programming_solver
+git clone <http://github.com/Santhosh-p653/projectSeries>
+cd ProjectSeries/LPPSolver
 2. Install Dependencies
 Using requirements.txt
 
@@ -54,7 +54,7 @@ Copy lp_solver.py code to a cell
 Run interactive_lp_solver() and follow prompts
 5. Project Structure
 
-linear_programming_solver/
+LPPSolver/
 ├── lp_solver.py        # Main interactive LP solver code
 ├── requirements.txt    # Python dependencies
 ├── setup.md            # Setup instructions (this file)
@@ -63,12 +63,3 @@ linear_programming_solver/
 Works for any number of variables and constraints
 For 2-variable problems, you could optionally add graphical feasible region in the future
 Supports both maximization and minimization problems
-
-
----
-
-Broo, you can now **just save this as `setup.md`** in your repo, and it’s **ready for GitHub users** to follow.  
-
-If you want, I can **also make a polished `README.md`** for this project so it looks **portfolio-ready and professional**.  
-
-Do you want me to do that?
