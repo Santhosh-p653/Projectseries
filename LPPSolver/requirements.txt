@@ -1,0 +1,8 @@
+# LP Solver Project Requirements
+
+# PuLP for Linear Programming
+pulp>=2.7.0
+
+# GLPK (solver backend)
+# On Linux/Colab, install using apt-get instead of pip:
+# !apt-get install -y glpk-utils
