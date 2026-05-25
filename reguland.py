@@ -12,18 +12,19 @@ from sklearn.linear_model import Ridge, Lasso
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Set page layout
-st.set_page_config(page_title="Regularization Dashboard", layout="wide")
+st.set_page_config(page_title="ReguLand Dashboard", layout="wide")
 
-st.title("🏡 Real Estate Price Predictor: Ridge vs. Lasso Regression")
+st.title("🏡 ReguLand: Interactive Real Estate Price Predictor")
 st.markdown("""
 This app demonstrates the impact of **L1 (Lasso)** and **L2 (Ridge)** regularization on a housing dataset fetched directly from GitHub.
 Regularization helps prevent overfitting by penalizing large coefficients.
 """)
 
-# 1. Fetch data from GitHub Raw URL (Cached to prevent re-downloading)
+# 1. Fetch data from verified, stable GitHub Raw URL
 @st.cache_data
 def load_data():
-    url = "https://raw.githubusercontent.com/manpreet496/Ames-Housing-Dataset/main/AmesHousing.csv"
+    # Using a reliable, permanent Ames Housing repository mirror
+    url = "https://raw.githubusercontent.com/devesh95/Ames-Housing-Dataset/master/AmesHousing.csv"
     df = pd.read_csv(url)
     df.columns = df.columns.str.replace(' ', '_')
     return df
@@ -45,7 +46,7 @@ st.sidebar.subheader("1. Hyperparameters")
 alpha = st.sidebar.slider("Regularization Strength (Alpha)", min_value=0.01, max_value=500.0, value=1.0, step=0.5)
 model_type = st.sidebar.radio("Select Model Type", ("Ridge (L2)", "Lasso (L1)"))
 
-# Filter down to selected features
+# Filter down to selected features and drop target row nulls
 df = df_raw[num_features + cat_features + [target_col]].dropna(subset=[target_col])
 
 X = df[num_features + cat_features]
@@ -116,7 +117,7 @@ with plot_col1:
 with plot_col2:
     st.subheader("📉 Feature Coefficients / Weights")
     
-    # Extract structural feature names
+    # Extract structural feature names from transformers
     cat_encoder = pipeline.named_steps['preprocessor'].named_transformers_['cat'].named_steps['onehot']
     encoded_cat_features = list(cat_encoder.get_feature_names_out(cat_features))
     all_features = num_features + encoded_cat_features
@@ -128,9 +129,10 @@ with plot_col2:
         'Feature': all_features,
         'Coefficient': coefficients
     })
+    
     # Sort by absolute impact value but keep original signs for plotting direction
     coef_df['abs_coef'] = coef_df['Coefficient'].abs()
-    coef_df = coef_df.sort_values(by='abs_coef', ascending=True).tail(12) # get top 12
+    coef_df = coef_df.sort_values(by='abs_coef', ascending=True).tail(12)  # get top 12
     
     fig2, ax2 = plt.subplots(figsize=(6, 4.5))
     
